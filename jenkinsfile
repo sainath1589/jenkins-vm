@@ -34,6 +34,11 @@ pipeline {
                 }
             }
         }
+        stage ('manual approval'){
+            steps{
+                input 'Approve?'
+            }
+        }
         stage('Terraform Apply') {
             steps {
                 script {
