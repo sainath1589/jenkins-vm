@@ -1,6 +1,11 @@
 provider "google" {
-  project = "future-lane-444809-c3" 
+  project_id = "future-lane-444809-c3" 
   region  = "us-central1"         
+}
+
+variable "project_id" {
+  description = "The GCP Project ID"
+  type        = string
 }
 
 resource "google_compute_instance" "default" {
