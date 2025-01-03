@@ -7,7 +7,7 @@ provider "google" {
 
 # Google Compute Engine instance resource
 resource "google_compute_instance" "example" {
-  name         = "example-vm"  # VM name
+  name         = "example"  # VM name
   machine_type = "e2-micro"    # Machine type
   zone         = "us-central1-a" # Zone
 
