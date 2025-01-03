@@ -1,6 +1,6 @@
 provider "google" {
-  project_id = "future-lane-444809-c3" 
-  region  = "us-central1"         
+  project = var.project_id  # Reference the variable instead of hardcoding the project_id
+  region  = "us-central1"
 }
 
 variable "project_id" {
@@ -10,8 +10,8 @@ variable "project_id" {
 
 resource "google_compute_instance" "default" {
   name         = "example-vm"
-  machine_type = "e2-micro"        
-  zone         = "us-central1-a"  
+  machine_type = "e2-micro"
+  zone         = "us-central1-a"
 
   boot_disk {
     initialize_params {
@@ -20,9 +20,10 @@ resource "google_compute_instance" "default" {
   }
 
   network_interface {
-    network = "default"          
-    access_config {}             
+    network = "default"
+    access_config {}
   }
 
   tags = ["http-server", "https-server"] # Optional, for HTTP/S firewall rules
 }
+
