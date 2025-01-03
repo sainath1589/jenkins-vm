@@ -2,14 +2,10 @@
 provider "google" {
   project     = var.project_id  # Reference the variable for project ID
   region      = "us-central1"   # Specify the region
-  credentials = var.gcp_credentials # Pass service account credentials from variables
+  # Pass service account credentials from variables
 }
 
-# Variable for GCP credentials
-variable "gcp_credentials" {
-  type        = string
-  description = "Service account key in JSON format"
-}
+
 
 # Variable for GCP Project ID
 variable "project_id" {
