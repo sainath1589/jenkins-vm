@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+
+    environment {
+        GOOGLE_APPLICATION_CREDENTIALS = credentials('google-creds') // Use your Jenkins credential ID
+    }
+
+    stages {
+        stage('Code Checkout') {
+            steps {
+                // Clone the 'jenkins-vm' repository
+                git url: 'https://github.com/sainath1589/jenkins-vm.git', branch: 'main'
+            }
+        }
+        stage('Verify Code') {
+            steps {
+                // List the files in the workspace to ensure main.tf exists
+                sh 'ls -l'
+            }
+        }
+        stage('Terraform Init') {
+            steps {
+                script {
+                    // Initialize Terraform in the current directory
+                    sh 'terraform init'
+                }
+            }
+        }
+        stage('Terraform Plan') {
+            steps {
+                script {
+                    // Generate a Terraform plan
+                    sh 'terraform plan -out=tfplan'
+                }
+            }
+        }
+        stage('Terraform Apply') {
+            steps {
+                script {
+                    // Apply the Terraform configuration
+                    sh 'terraform apply tfplan'
+                }
+            }
+        }
+    }
+}
+
