@@ -6,6 +6,7 @@ provider "google" {
 variable "project_id" {
   description = "The GCP Project ID"
   type        = string
+  default = "future-lane-444809-c3"
 }
 
 resource "google_compute_instance" "default" {
